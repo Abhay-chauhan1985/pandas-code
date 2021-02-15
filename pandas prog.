@@ -36,3 +36,174 @@ print(type(ds.tolist()))
 convert pandas series in to python list 
 [2, 4, 6, 8, 10]
 <class 'list'>
+
+
+
+
+
+#Write a Pandas program to change the data type of given a column or a Series
+import pandas as pd
+s1=pd.Series(['100', '200', 'python', '300.12', '400'])
+print("\noriginal data series\n",s1)
+s2=pd.to_numeric(s1,errors='coerce')
+print("\npanda data series\n",s2)
+>>>>>>output
+original data series
+ 0       100
+1       200
+2    python
+3    300.12
+4       400
+dtype: object
+
+panda data series
+ 0    100.00
+1    200.00
+2       NaN
+3    300.12
+4    400.00
+dtype: float64
+
+
+#Write a Pandas program to convert a given Series to an array.
+import pandas as pd
+import numpy as np
+ds=pd.Series(['100','200','python','300.2','400'])
+print("original series\n",ds)
+nd_arr=np.array(ds.values.tolist())
+print("new array\n",nd_arr)
+>>>>output
+original series
+ 0       100
+1       200
+2    python
+3     300.2
+4       400
+dtype: object
+new array
+ ['100' '200' 'python' '300.2' '400']
+ 
+ 
+ 
+#Write a Pandas program to convert Series of lists to one Series.
+import pandas as pd
+s=pd.Series([
+    ['Red','green','white'],
+    ['Red','Black'],
+    ['yellow']
+])
+print("original list of series\n",s)
+s=s.apply(pd.Series).stack().reset_index(drop=True)
+#DataFrame.apply(func, axis=0, raw=False, result_type=None, args=(), **kwds)[source]¶
+#Apply a function along an axis of the DataFrame.
+#Objects passed to the function are Series objects whose index is either the DataFrame’s index (axis=0) or the DataFrame’s columns (axis=1).
+#DataFrame.stack(level=- 1, dropna=True)[source]¶
+#Stack the prescribed level(s) from columns to index.
+#Return a reshaped DataFrame or Series having a multi-level index with one or more new inner-most levels compared 
+#to the current DataFrame. The new inner-most levels are created by pivoting the columns of the current dataframe:
+#if the columns have a single level, the output is a Series;
+#if the columns have multiple levels, the new index level(s) is (are) taken from the prescribed level(s) and the output is a DataFrame.
+#DataFrame.reset_index:Reset the index of the DataFrame, and use the default one instead. 
+#If the DataFrame has a MultiIndex, this method can remove one or more levels.
+print("new series\n",s)
+>>>>>>output
+original list of series
+ 0    [Red, green, white]
+1           [Red, Black]
+2               [yellow]
+dtype: object
+new series
+ 0       Red
+1     green
+2     white
+3       Red
+4     Black
+5    yellow
+dtype: object
+
+
+
+#Write a Pandas program to sort a given Series.
+import pandas as pd
+ds=pd.Series(['100','200','python','300.2','400'])
+print("original data series\n",ds)
+sorted_series=pd.Series(ds).sort_values()
+#DataFrame.sort_values():Sort by the values along either axis.
+print("new sorted series\n",sorted_series)
+>>>>output
+original data series
+ 0       100
+1       200
+2    python
+3     300.2
+4       400
+dtype: object
+new sorted series
+ 0       100
+1       200
+3     300.2
+4       400
+2    python
+dtype: object
+
+
+
+#Write a Pandas program to add some data to an existing Series.
+import pandas as pd
+s=pd.Series(['100','200','300','python','R'])
+print("original data series\n",s)
+new_series=s.append(pd.Series(['400','php']))
+#.append():Append rows of other to the end of caller, returning a new object.
+#Columns in other that are not in the caller are added as new columns.
+print("new series after addition\n",new_series)
+>>>>>>output
+original data series
+ 0       100
+1       200
+2       300
+3    python
+4         R
+dtype: object
+new series after addition
+ 0       100
+1       200
+2       300
+3    python
+4         R
+0       400
+1       php
+dtype: object
+
+
+
+
+#Write a Pandas program to create a subset of a given series based on value and condition. 
+import pandas as pd
+s=pd.Series([0,1,2,3,4,5,6,7,8,9,10])
+print("original series\n",s)
+n=6
+new_series=s[s<n]
+print("new subset of original series\n",new_series)
+>>>>>>output
+original series
+ 0      0
+1      1
+2      2
+3      3
+4      4
+5      5
+6      6
+7      7
+8      8
+9      9
+10    10
+dtype: int64
+new subset of original series
+ 0    0
+1    1
+2    2
+3    3
+4    4
+5    5
+dtype: int64
+
