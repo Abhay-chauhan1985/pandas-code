@@ -1,0 +1,38 @@
+#Write a Pandas program to create and display a one-dimensional array-like object containing an array of data.
+import pandas as pd
+ds=pd.Series([[2,4,6,8,10]])
+print(ds)
+>>>>>>output
+0    [2, 4, 6, 8, 10]
+dtype: object
+
+
+
+
+
+
+
+
+
+#Write a Pandas program to convert a Panda module Series to Python list and it’s type.
+import pandas as pd
+ds=pd.Series([2,4,6,8,10])
+print("pandas series and its type") # printing pandas series and its type
+print(ds)
+print(type(ds))
+>>>>>>output
+pandas series and its type
+0     2
+1     4
+2     6
+3     8
+4    10
+dtype: int64
+<class 'pandas.core.series.Series'>
+print("convert pandas series in to python list ")  # converting pandas series into python list
+print(ds.tolist())
+print(type(ds.tolist()))
+>>>>output
+convert pandas series in to python list 
+[2, 4, 6, 8, 10]
+<class 'list'>
