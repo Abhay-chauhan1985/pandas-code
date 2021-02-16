@@ -207,3 +207,35 @@ new subset of original series
 5    5
 dtype: int64
 
+
+
+
+
+
+
+#write a pandas program to change the order of index of a given series.
+import pandas as pd
+ds=pd.Series(data=[1,2,3,4,5],index=['A','B','C','D','E'])
+print("\noriginal series with index\n",ds)
+ds=ds.reindex(index=['B','C','A','E','D'])
+#.reindex():Conform Series/DataFrame to new index with optional filling logic.
+#Places NA/NaN in locations having no value in the previous index. 
+#A new object is produced unless the new index is equivalent to the current one and copy=False.
+print("\nnew series after reindexing\n",ds)
+>>>>>>output
+original series with index
+ A    1
+B    2
+C    3
+D    4
+E    5
+dtype: int64
+
+new series after reindexing
+ B    2
+C    3
+A    1
+E    5
+D    4
+dtype: int64
+
